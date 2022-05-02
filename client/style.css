@@ -1,3 +1,33 @@
 body {
     background-color: ghostwhite;
 }
+
+.date-hour-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.date {
+    font-size: 17px;
+    margin-left: 8px;
+    margin-right: 10px;
+}
+
+.date-icon {
+    color: "#805AD5";
+    size: 100px;
+}
+
+.hour {
+    margin-left: 8px;
+    font-size: 17px;
+}
+
+.h1 {
+    text-shadow: 1px 0px 3px black, 3px -1px 5px black;
+}
+
+.content {
+    font-size: 25px;
+}

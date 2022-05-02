@@ -1,14 +1,17 @@
 import ReactDOM from "react-dom";
-import Main from "./components/main";
+import App from "./app";
 
-ReactDOM.render(<App />, document.querySelector("main"));
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-function App() {
-    return (
-        <div>
-            <Main />
-        </div>
-    );
-}
+//Chakra UI
+import { ChakraProvider } from "@chakra-ui/react";
 
-export default App;
+ReactDOM.render(
+    <Provider store={store}>
+        <ChakraProvider>
+            <App />
+        </ChakraProvider>
+    </Provider>,
+    document.querySelector("main")
+);

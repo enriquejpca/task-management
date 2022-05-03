@@ -1,4 +1,11 @@
-import { Flex, Spacer, FormControl, Input, Button } from "@chakra-ui/react";
+import {
+    Flex,
+    Spacer,
+    FormControl,
+    Input,
+    Button,
+    Select,
+} from "@chakra-ui/react";
 import { BsCalendarDay } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
@@ -9,9 +16,29 @@ import { addTodo } from "../redux/actions";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { IconButton, useColorMode } from "@chakra-ui/react";
 
+const options = [
+    {
+        label: "Personal",
+        value: "Personal",
+    },
+    {
+        label: "Work",
+        value: "Work",
+    },
+    {
+        label: "Music",
+        value: "Music",
+    },
+    {
+        label: "Other",
+        value: "Other things",
+    },
+];
+
 export const AddTodo = () => {
     const dispatch = useDispatch();
     const [value, setValue] = useState("");
+    const [categories, setCategories] = useState("");
     const [dateState, setDateState] = useState(new Date());
     const { colorMode, toggleColorMode } = useColorMode();
 
@@ -28,8 +55,13 @@ export const AddTodo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addTodo(value));
+        dispatch(addTodo(value, categories));
         setValue("");
+    };
+
+    const onChangeSelectCategories = (value) => {
+        setCategories(value);
+        console.log("eeeee", value);
     };
 
     return (
@@ -66,7 +98,7 @@ export const AddTodo = () => {
             </div>
 
             <Flex>
-                <FormControl mr={5} mb={10}>
+                <FormControl mr={2} mb={10}>
                     <Input
                         type="text"
                         textAlign="center"
@@ -79,9 +111,35 @@ export const AddTodo = () => {
                         value={value}
                     />
                 </FormControl>
+                <Select
+                    mr={2}
+                    w={250}
+                    color="#805AD5"
+                    defaultValue={options.value}
+                    onChange={(e) => onChangeSelectCategories(e.target.value)}
+                >
+                    <option value="1" color="#805AD5">
+                        Personal
+                    </option>
+                    <option value="2" color="#805AD5">
+                        Work
+                    </option>
+                    <option value="3" color="#805AD5">
+                        Music
+                    </option>
+                    <option value="4" color="#805AD5">
+                        Other things
+                    </option>
+                </Select>
+                {/* <select>
+                    <option>Personal</option>
+                    <option>Work</option>
+                    <option>Music</option>
+                    <option>Other things</option>
+                </select> */}
 
                 <Button colorScheme="purple" type="submit" disabled={!value}>
-                    Add <IoMdAddCircle size={30} />
+                    Add <IoMdAddCircle size={45} />
                 </Button>
             </Flex>
         </form>

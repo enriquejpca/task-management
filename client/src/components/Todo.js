@@ -1,13 +1,4 @@
-import {
-    Flex,
-    Spacer,
-    Switch,
-    Editable,
-    EditablePreview,
-    EditableInput,
-    Text,
-    Button,
-} from "@chakra-ui/react";
+import { Flex, Spacer, Switch, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleTodo, deleteTodo, updateTodo } from "../redux/actions";
@@ -42,15 +33,6 @@ export default function Todo({ todo }) {
         updateTodo(todo.content);
         setEdit(false);
     };
-
-    // const handleSubmitNewContent = (e) => {
-    //     e.preventDefault();
-    //     dispatch(updateTodo(todo.content));
-    // };
-
-    // useEffect(() => {
-    //     setContent(todo.content);
-    // }, [todo]);
 
     return (
         <Flex
@@ -113,6 +95,8 @@ export default function Todo({ todo }) {
             </div>
             <Spacer />
             <Button
+                mr={5}
+                letterSpacing={1}
                 onClick={() => {
                     if (edit) {
                         setEdit(true);
@@ -128,6 +112,7 @@ export default function Todo({ todo }) {
             >
                 {edit ? "Update" : "Edit"}
             </Button>
+
             <RiDeleteBinLine
                 className="delete-icon"
                 size={25}

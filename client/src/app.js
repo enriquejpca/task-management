@@ -21,7 +21,6 @@ function App() {
             >
                 TASKS MANAGEMENT
             </Heading>
-
             <AddTodo />
             <VisibilityFilter />
             <TodoList />

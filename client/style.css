@@ -31,3 +31,17 @@ body {
 .content {
     font-size: 25px;
 }
+
+.notodos-message {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 18px;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 40px;
+    align-items: center;
+    background-color: black;
+    color: white;
+    opacity: 0.3;
+}

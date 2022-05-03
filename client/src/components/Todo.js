@@ -5,19 +5,21 @@ import {
     Editable,
     EditablePreview,
     EditableInput,
+    Text,
+    Button,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { toggleTodo, deleteTodo } from "../redux/actions";
+import { toggleTodo, deleteTodo, updateTodo } from "../redux/actions";
 import { RiDeleteBinLine } from "react-icons/ri";
-//import { BiEditAlt } from "react-icons/bi";
 
 import { motion } from "framer-motion";
 
 export default function Todo({ todo }) {
     const dispatch = useDispatch();
     const [checked, setChecked] = useState(false);
-    //const [editable, setEditable] = useState("");
+    const [edit, setEdit] = useState(false);
+    const [content, setContent] = useState(todo.content);
 
     const handleCheked = (e) => {
         console.log("e: ", e);
@@ -35,14 +37,19 @@ export default function Todo({ todo }) {
         dispatch(deleteTodo(todo.id));
     };
 
-    // const handleChangeContent = (e) => {
-    //     console.log("e: ", e);
-    //     console.log("The user is clicking in the bio edit");
-    //     dispatch(editTodo(todo.content));
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        updateTodo(todo.content);
+        setEdit(false);
+    };
+
+    // const handleSubmitNewContent = (e) => {
+    //     e.preventDefault();
+    //     dispatch(updateTodo(todo.content));
     // };
 
     // useEffect(() => {
-    //     setEditable(todo.content);
+    //     setContent(todo.content);
     // }, [todo]);
 
     return (
@@ -69,7 +76,9 @@ export default function Todo({ todo }) {
             // }}
             mt={6}
             mb={3}
-            bgColor="#805AD5"
+            //bgColor="#805AD5"
+            bgGradient="linear(to-r, #805AD5, black)"
+            opacity="0.95"
             p={4}
             w="580px"
             alignItems="center"
@@ -78,7 +87,7 @@ export default function Todo({ todo }) {
             borderStyle="solid"
             borderColor="black"
             borderRadius="10px"
-            color="white"
+            color="black"
             fontSize="20px"
         >
             <Switch
@@ -87,17 +96,42 @@ export default function Todo({ todo }) {
                 isChecked={checked}
                 onChange={handleCheked}
             ></Switch>
-            <Editable defaultValue={todo.content} size={20} className="content">
+            {/* <Editable defaultValue={todo.content} size={20} className="content">
                 <EditablePreview />
                 <EditableInput />
-            </Editable>
-            {/* <Text as={todo.completed && "del"} size={20}>
-                {todo.content}
-            </Text> */}
+            </Editable> */}
+            <div onSubmit={handleUpdate}>
+                {edit ? (
+                    <input
+                        type="text"
+                        onChange={(e) => setContent(e.target.value)}
+                        value={content}
+                    />
+                ) : (
+                    <div> {todo.content}</div>
+                )}
+            </div>
             <Spacer />
+            <Button
+                onClick={() => {
+                    if (edit) {
+                        setEdit(true);
+                        dispatch(
+                            updateTodo({
+                                ...todo,
+                                content: content,
+                            })
+                        );
+                    }
+                    setEdit(!edit);
+                }}
+            >
+                {edit ? "Update" : "Edit"}
+            </Button>
             <RiDeleteBinLine
                 className="delete-icon"
                 size={25}
+                color="white"
                 onClick={removeClick}
             />
         </Flex>

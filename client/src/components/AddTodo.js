@@ -1,4 +1,4 @@
-import { Flex, FormControl, Input, Button } from "@chakra-ui/react";
+import { Flex, Spacer, FormControl, Input, Button } from "@chakra-ui/react";
 import { BsCalendarDay } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
@@ -6,11 +6,14 @@ import { IoMdAddCircle } from "react-icons/io";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/actions";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { IconButton, useColorMode } from "@chakra-ui/react";
 
 export const AddTodo = () => {
     const dispatch = useDispatch();
     const [value, setValue] = useState("");
     const [dateState, setDateState] = useState(new Date());
+    const { colorMode, toggleColorMode } = useColorMode();
 
     useEffect(() => {
         setInterval(() => setDateState(new Date()), 30000);
@@ -54,6 +57,12 @@ export const AddTodo = () => {
                         hour12: true,
                     })}
                 </p>
+                <Spacer />
+                <IconButton
+                    color="#805AD5"
+                    icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
+                    onClick={toggleColorMode}
+                />
             </div>
 
             <Flex>

@@ -7,16 +7,23 @@ export const TodoList = () => {
     const { todos, visibilityFilter } = useSelector((state) => state);
     console.log("todos: ", todos.todos);
     const filterTodos = getTodosByVisibilityFilter(todos, visibilityFilter);
+    console.log("filterTodos: ", filterTodos);
+    if (!todos.todos.length) {
+        return <div className="notodos-message">Nothing yet!</div>;
+    }
 
     return (
-        <Box>
-            {filterTodos &&
-                filterTodos.map((todo) => <Todo key={todo.id} todo={todo} />)}
-        </Box>
+        <div>
+            {/* <Box textAlign="center" my="4">
+                Nothing yet!
+            </Box>
+            : */}
+            <Box>
+                {filterTodos &&
+                    filterTodos.map((todo) => (
+                        <Todo key={todo.id} todo={todo} />
+                    ))}
+            </Box>
+        </div>
     );
 };
-{
-    /* <Box textAlign="center" my="4">
-                    Nothing yet!
-                </Box> */
-}

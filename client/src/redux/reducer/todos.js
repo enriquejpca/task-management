@@ -1,4 +1,9 @@
-import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, EDIT_TODO } from "../actionsTypes";
+import {
+    ADD_TODO,
+    TOGGLE_TODO,
+    DELETE_TODO,
+    UPDATE_TODO,
+} from "../actionsTypes";
 
 const initialState = {
     todos: [],
@@ -32,15 +37,17 @@ const todos = (state = initialState, action) => {
             return { todos };
         }
 
-        // case EDIT_TODO: {
-        //     const { content } = action.payload;
-        //     console.log("Action.payload: ", action.payload);
+        case UPDATE_TODO: {
+            const { content } = action.payload;
+            console.log("Action.payload: ", action.payload);
 
-        //     const todos = state.todos.map((obj) => {
-        //         return [...obj, action.payload];
-        //     });
-        //     return { todos };
-        // }
+            const todos = state.todos.map((todo) => {
+                if (todo.id === action.payload.id) {
+                    return { ...todo, content: action.payload.content };
+                }
+            });
+            return { todos };
+        }
 
         default:
             return state;

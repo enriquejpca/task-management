@@ -3,7 +3,7 @@ import {
     TOGGLE_TODO,
     SET_FILTER,
     DELETE_TODO,
-    EDIT_TODO,
+    UPDATE_TODO,
 } from "./actionsTypes";
 
 let nextTodoId = 0;
@@ -30,7 +30,7 @@ export const deleteTodo = (id) => ({
     payload: { id },
 });
 
-// export const editTodo = (content) => ({
-//     type: EDIT_TODO,
-//     payload: { content },
-// });
+export const updateTodo = (todo) => ({
+    type: UPDATE_TODO,
+    payload: todo,
+});

@@ -1,4 +1,4 @@
-import { Flex, Spacer, Switch, Button, Box } from "@chakra-ui/react";
+import { Flex, Spacer, Switch, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleTodo, deleteTodo, updateTodo } from "../redux/actions";

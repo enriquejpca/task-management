@@ -16,7 +16,6 @@ import { addTodo } from "../redux/actions";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { IconButton, useColorMode } from "@chakra-ui/react";
 
-
 const options = [
     {
         label: "Personal",
@@ -119,6 +118,7 @@ export const AddTodo = () => {
                     />
                 </FormControl>
                 <Select
+                    variant="filled"
                     mr={2}
                     w={220}
                     color="#805AD5"
@@ -144,6 +144,8 @@ export const AddTodo = () => {
                 </Button>
             </Flex>
             <Select
+                display="flex"
+                variant="filled"
                 w={200}
                 color="#805AD5"
                 onChange={(e) => onChangeSelectUrgencyLevel(e.target.value)}

@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import Todo from "./Todo";
 import { getTodosByVisibilityFilter } from "../redux/selector";
+import ReactTypingEffect from "react-typing-effect";
 
 export const TodoList = () => {
     const { todos, visibilityFilter } = useSelector((state) => state);
@@ -9,7 +10,11 @@ export const TodoList = () => {
     const filterTodos = getTodosByVisibilityFilter(todos, visibilityFilter);
     console.log("filterTodos: ", filterTodos);
     if (!todos.todos.length) {
-        return <div className="notodos-message">Nothing yet!</div>;
+        return (
+            <div className="notodos-message">
+                <ReactTypingEffect text={["Nothing yet!"]} />
+            </div>
+        );
     }
 
     return (

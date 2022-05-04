@@ -18,6 +18,7 @@ export const VisibilityFilter = () => {
                                 initial={{ y: 1000 }}
                                 animate={{ y: 0 }}
                                 transition={{ type: "spring", duration: 2 }}
+                                fontSize={17}
                                 marginTop={8}
                                 //borderColor="#805AD5"
                                 _focus={{ borderColor: "#805AD5" }}

@@ -12,12 +12,12 @@ const initialState = {
 const todos = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODO: {
-            const { id, content, categories } = action.payload;
+            const { id, content, categories, urgency } = action.payload;
 
             return {
                 todos: [
                     ...state.todos,
-                    { content, completed: false, id, categories },
+                    { content, completed: false, id, categories, urgency },
                 ],
             };
         }

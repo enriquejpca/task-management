@@ -16,6 +16,7 @@ import { addTodo } from "../redux/actions";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { IconButton, useColorMode } from "@chakra-ui/react";
 
+
 const options = [
     {
         label: "Personal",
@@ -39,6 +40,7 @@ export const AddTodo = () => {
     const dispatch = useDispatch();
     const [value, setValue] = useState("");
     const [categories, setCategories] = useState("");
+    const [urgency, setUrgency] = useState("");
     const [dateState, setDateState] = useState(new Date());
     const { colorMode, toggleColorMode } = useColorMode();
 
@@ -55,12 +57,17 @@ export const AddTodo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addTodo(value, categories));
+        dispatch(addTodo(value, categories, urgency));
         setValue("");
     };
 
     const onChangeSelectCategories = (value) => {
         setCategories(value);
+        console.log("eeeee", value);
+    };
+
+    const onChangeSelectUrgencyLevel = (value) => {
+        setUrgency(value);
         console.log("eeeee", value);
     };
 
@@ -113,35 +120,41 @@ export const AddTodo = () => {
                 </FormControl>
                 <Select
                     mr={2}
-                    w={250}
+                    w={220}
                     color="#805AD5"
                     defaultValue={options.value}
                     onChange={(e) => onChangeSelectCategories(e.target.value)}
                 >
-                    <option value="1" color="#805AD5">
+                    <option value="Personal" color="#805AD5">
                         Personal
                     </option>
-                    <option value="2" color="#805AD5">
+                    <option value="Work" color="#805AD5">
                         Work
                     </option>
-                    <option value="3" color="#805AD5">
+                    <option value="Music" color="#805AD5">
                         Music
                     </option>
-                    <option value="4" color="#805AD5">
+                    <option value="Other things" color="#805AD5">
                         Other things
                     </option>
                 </Select>
-                {/* <select>
-                    <option>Personal</option>
-                    <option>Work</option>
-                    <option>Music</option>
-                    <option>Other things</option>
-                </select> */}
 
                 <Button colorScheme="purple" type="submit" disabled={!value}>
                     Add <IoMdAddCircle size={45} />
                 </Button>
             </Flex>
+            <Select
+                w={200}
+                color="#805AD5"
+                onChange={(e) => onChangeSelectUrgencyLevel(e.target.value)}
+            >
+                <option value="No urgent" color="#805AD5">
+                    No urgent
+                </option>
+                <option value="Urgent" color="#805AD5">
+                    Urgent
+                </option>
+            </Select>
         </form>
     );
 };

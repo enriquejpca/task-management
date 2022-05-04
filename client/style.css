@@ -45,3 +45,14 @@ body {
     color: white;
     opacity: 0.3;
 }
+
+.categories-words {
+    color: white;
+    letter-spacing: 1;
+    margin-left: 5px;
+}
+
+.urgency-words {
+    color: white;
+    letter-spacing: 1;
+}

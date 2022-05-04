@@ -7,12 +7,13 @@ import {
 } from "./actionsTypes";
 
 let nextTodoId = 0;
-export const addTodo = (content, categories) => ({
+export const addTodo = (content, categories, urgency) => ({
     type: ADD_TODO,
     payload: {
         id: ++nextTodoId,
         content,
         categories,
+        urgency,
     },
 });
 
